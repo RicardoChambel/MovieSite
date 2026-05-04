@@ -1,39 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movies</title>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MaxiMovies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="home" class="hero">
-      <header>
-        <h2><span style="color: yellow">Maxi</span>movies</h2>
-        <ul>
-          <a href="#home"><li>Home</li></a>
-          <a href="#"><li>Movies</li></a>
-          <a href="#"><li>Series</li></a>
-          <a href="#"><li style="color: rgb(194, 158, 0);">What's New!</li></a>
-        </ul>
-        <button>Sign Up</button>
-      </header>
-      <div class="main">
-        <div id="spotlight" class="spotlight">
-          <div class="spotlightElements">
-            <h1 id="spotlightTitle" class="element spotlightTitle">The Amazing Spider-Man</h1>
-            <p id="spotlightDescription" class="element spotlightDescription">After Peter Parker is bitten by a genetically altered spider, he gains newfound, spider-like powers and ventures out to save the city from the machinations of a mysterious reptilian foe.</p>
-            <button class="element">About +</button>
-          </div>
-        </div>
-        <div class="movies">
-          <div id="movie1" class="movie movie1"></div>
-          <div id="movie2" class="movie movie2 selected"></div>
-          <div id="movie3" class="movie movie3"></div>
-        </div>
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="logo"><span>Maxi</span>Movies</div>
+  <ul class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#">Movies</a>
+    <a href="#">Series</a>
+    <a href="#" class="highlight">What's New!</a>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="theme-icon moon">🌙</span>
+      <span class="theme-icon sun">☀️</span>
+    </button>
+    <button class="btn-signup">Sign Up</button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero-section">
+  <div class="spotlight" id="spotlight">
+
+    <!-- Backgrounds (one per movie) -->
+    <div class="spotlight-bg active" id="bg-0" style="background-image: url('img/deadpoolPanel.png'); background-position: 100% 10%;"></div>
+    <div class="spotlight-bg hidden" id="bg-1" style="background-image: url('img/tas.png');"></div>
+    <div class="spotlight-bg hidden" id="bg-2" style="background-image: url('img/hpPanel.jpg');"></div>
+
+    <div class="spotlight-overlay"></div>
+
+    <div class="spotlight-content">
+      <div class="spotlight-badge">
+        <span class="badge-dot"></span>
+        Now Showing
+      </div>
+      <h1 class="spotlight-title" id="spotlightTitle">Deadpool &amp; Wolverine</h1>
+      <div class="spotlight-meta">
+        <span class="meta-tag rating">★ 8.4</span>
+        <span class="meta-sep"></span>
+        <span class="meta-tag">2024</span>
+        <span class="meta-sep"></span>
+        <span class="meta-tag">2h 7m</span>
+        <span class="meta-sep"></span>
+        <span class="meta-tag">Action • Comedy</span>
+      </div>
+      <p class="spotlight-desc" id="spotlightDesc">
+        Deadpool is offered a place in the Marvel Cinematic Universe by the Time Variance Authority, but instead recruits a variant of Wolverine to save his universe from extinction.
+      </p>
+      <div class="spotlight-actions">
+        <button class="btn-watch">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Watch Now
+        </button>
+        <button class="btn-info">+ Watchlist</button>
       </div>
     </div>
-  </body>
+
+    <!-- Movie strip -->
+    <div class="movie-strip">
+      <div class="movie-card active" id="card-0"
+           style="background-image: url('img/deadpool.png');"
+           data-index="0"></div>
+      <div class="movie-card" id="card-1"
+           style="background-image: url('img/tasPanel.png');"
+           data-index="1"></div>
+      <div class="movie-card" id="card-2"
+           style="background-image: url('img/hp.png');"
+           data-index="2"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── NOW SHOWING ─── -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Now <span>Showing</span></h2>
+    <a href="#" class="section-link">
+      View all
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="genre-strip">
+    <button class="genre-pill active">All</button>
+    <button class="genre-pill">Action</button>
+    <button class="genre-pill">Drama</button>
+    <button class="genre-pill">Sci-Fi</button>
+    <button class="genre-pill">Comedy</button>
+    <button class="genre-pill">Horror</button>
+    <button class="genre-pill">Animation</button>
+  </div>
+
+  <div class="movies-grid">
+    <!-- Cards using placeholder colors since images are local -->
+    <div class="grid-card">
+      <div class="grid-card-poster" style="background-image: url('img/deadpool.png'); background-color: #1a0a0a;">
+        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="grid-card-info">
+        <div class="grid-card-title">Deadpool &amp; Wolverine</div>
+        <div class="grid-card-meta"><span class="grid-card-rating">★ 8.4</span><span>2024</span></div>
+      </div>
+    </div>
+    <div class="grid-card">
+      <div class="grid-card-poster" style="background-image: url('img/tasPanel.png'); background-color: #0a1020;">
+        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="grid-card-info">
+        <div class="grid-card-title">The Amazing Spider-Man</div>
+        <div class="grid-card-meta"><span class="grid-card-rating">★ 7.0</span><span>2012</span></div>
+      </div>
+    </div>
+    <div class="grid-card">
+      <div class="grid-card-poster" style="background-image: url('img/hp.png'); background-color: #0d0d1a;">
+        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="grid-card-info">
+        <div class="grid-card-title">Harry Potter: Philosopher's Stone</div>
+        <div class="grid-card-meta"><span class="grid-card-rating">★ 7.6</span><span>2001</span></div>
+      </div>
+    </div>
+    <div class="grid-card">
+      <div class="grid-card-poster" style="background-color: #111820;">
+        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="grid-card-info">
+        <div class="grid-card-title">Interstellar</div>
+        <div class="grid-card-meta"><span class="grid-card-rating">★ 8.7</span><span>2014</span></div>
+      </div>
+    </div>
+    <div class="grid-card">
+      <div class="grid-card-poster" style="background-color: #1a1208;">
+        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="grid-card-info">
+        <div class="grid-card-title">Dune: Part Two</div>
+        <div class="grid-card-meta"><span class="grid-card-rating">★ 8.5</span><span>2024</span></div>
+      </div>
+    </div>
+    <div class="grid-card">
+      <div class="grid-card-poster" style="background-color: #100a18;">
+        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+      </div>
+      <div class="grid-card-info">
+        <div class="grid-card-title">Oppenheimer</div>
+        <div class="grid-card-meta"><span class="grid-card-rating">★ 8.9</span><span>2023</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo"><span>Maxi</span>Movies</div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#">Terms</a>
+    <a href="#">Privacy</a>
+    <a href="#">Contact</a>
+    <a href="#">Help</a>
+  </div>
+  <div class="footer-copy">© 2024 MaxiMovies. All rights reserved.</div>
+</footer>
+
+<script src="script.js">
+</script>
+</body>
 </html>
